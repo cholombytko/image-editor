@@ -1,0 +1,1047 @@
+<svg version="1.1" baseProfile="full" width="6976.8" height="580.0" viewbox="0 0 6976.75 580" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events">
+<desc >#.interface: fill=lightblue
+#.enumeration: fill=lightgreen
+#.type: fill=lightgray
+[AppModule||]
+[DatabaseModule||]
+[AuthController|-authService: AuthService|+signUp(): Promise&lt;{ access_token: string; }&gt;;+signIn(): Promise&lt;{ access_token: string; }&gt;]
+[AuthController]  -  [AuthService]
+[AuthModule||]
+[ImagesModule||]
+[ImagesService|-imageRepository: Repository&lt;Image&gt;|+create(): Promise&lt;Image&gt;;+findOneById(): Promise&lt;Image&gt;;+update(): Promise&lt;Image&gt;;+removeById(): Promise&lt;void&gt;]
+[ProjectController|-projectService: ProjectService|+create(): Promise&lt;Project&gt;;+findAll(): Promise&lt;Project\[\]&gt;;+findOne(): Promise&lt;Project&gt;;+update(): Promise&lt;Project&gt;;+remove(): Promise&lt;void&gt;]
+[ProjectController]  -  [ProjectService]
+[ProjectModule||]
+[ProjectService|-projectRepository: Repository&lt;Project&gt;;-userService: UserService;-imageService: ImagesService|+create(): Promise&lt;Project&gt;;+findAllByUserId(): Promise&lt;Project\[\]&gt;;+findOneById(): Promise&lt;Project&gt;;+update(): Promise&lt;Project&gt;;+remove(): Promise&lt;void&gt;]
+[UserModule||]
+[UserService|-userRepository: Repository&lt;User&gt;|+create(): Promise&lt;User&gt;;+findOne(): Promise&lt;IUser&gt;]
+[SignInDto|+password: string;+email: string|]
+[SignUpDto|+name: string;+password: string;+email: string|]
+[IncorrectPasswordException||]
+[UnauthorizedException]&lt;:-[IncorrectPasswordException]
+[InvalidTokenException||]
+[UnauthorizedException]&lt;:-[InvalidTokenException]
+[AuthTokenNotFoundException||]
+[UnauthorizedException]&lt;:-[AuthTokenNotFoundException]
+[UserAlreadyExistsException||]
+[BadRequestException]&lt;:-[UserAlreadyExistsException]
+[UserNotFoundException||]
+[BadRequestException]&lt;:-[UserNotFoundException]
+[AuthGuard|-jwtService: JwtService;-userService: UserService|+canActivate(): Promise&lt;boolean&gt;;-extractTokenFromHeader(): string]
+[CanActivate]&lt;:--[AuthGuard]
+[&lt;interface&gt;IAuthData|+name?: string;+email: string;+password: string|]
+[&lt;interface&gt;IAuthResponse|+access_token: string;+userId: number|]
+[AuthService|-jwtService: JwtService;-passwordService: PasswordService;-userService: UserService|+signUp(): Promise&lt;IAuthResponse&gt;;+signIn(): Promise&lt;IAuthResponse&gt;]
+[AuthService]  -  [PasswordService]
+[PasswordService|-configService: ConfigService&lt;Record&lt;string, unknown&gt;, false&gt;|+hash(): Promise&lt;string&gt;;+compare(): Promise&lt;boolean&gt;]
+[CreateImageDto||]
+[UpdateImageDto||]
+[Image|+id: number;+image: string;+project: Project|]
+[&lt;interface&gt;ICreateImage|+image: string|]
+[CreateProjectDto|+userId: number;+title: string;+image: string|]
+[FindByUserIdDto|+userId: number|]
+[UpdateProjectDto|+userId: number;+title?: string;+image?: string|]
+[Project|+id: number;+title: string;+user: User;+image: Image|]
+[&lt;interface&gt;ICreateProject|+title: string;+userId: number;+image: string|]
+[&lt;interface&gt;IUpdateProject|+userId: number;+title?: string;+image?: string|]
+[User|+id: number;+name: string;+email: string;+password: string;+projects: Project\[\]|]
+[&lt;interface&gt;ICreateUser|+name: string;+email: string;+password: string|]
+[&lt;interface&gt;IFindUser|+id?: number;+email?: string|]
+[&lt;interface&gt;IUser|+id: number;+name: string;+email: string;+password: string|]</desc>
+<g stroke-width="1.0" text-align="left" font="12pt Helvetica, Arial, sans-serif" font-size="12pt" font-family="Helvetica" font-weight="normal" font-style="normal">
+<g font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" stroke-width="3.0" stroke-linejoin="round" stroke-linecap="round" stroke="#33322E">
+<g stroke="transparent" fill="transparent">
+<rect x="0.0" y="0.0" height="580.0" width="6976.8" stroke="none"></rect>
+</g>
+<g transform="translate(8, 8)" fill="#33322E">
+<g transform="translate(20, 20)" fill="#33322E" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal">
+<path d="M511.0 145.5 L511 173 L511 215.5 L511.0 215.5 " fill="none"></path>
+<path d="M1537.5 153.0 L1537.5 173 L1537.5 193 L1537.5 193.0 " fill="none"></path>
+<path d="M2739.8 94.0 L2229.25 173 L2229.25 261 L2229.3 261.0 " fill="none"></path>
+<path d="M2740.6 99.3 L2739.8 94.0 L2739.0 88.7 L2753.0 92.0 Z"></path>
+<path d="M2820.9 99.8 L2720.25 173 L2720.25 261 L2720.3 261.0 " fill="none"></path>
+<path d="M2824.0 104.2 L2820.9 99.8 L2817.8 95.5 L2831.7 92.0 Z"></path>
+<path d="M2885.1 99.8 L2985.75 173 L2985.75 261 L2985.8 261.0 " fill="none"></path>
+<path d="M2888.2 95.5 L2885.1 99.8 L2882.0 104.2 L2874.3 92.0 Z"></path>
+<path d="M3372.4 99.9 L3272.75 173 L3272.75 261 L3272.8 261.0 " fill="none"></path>
+<path d="M3375.5 104.2 L3372.4 99.9 L3369.2 95.6 L3383.1 92.0 Z"></path>
+<path d="M3436.1 99.9 L3535.75 173 L3535.75 261 L3535.8 261.0 " fill="none"></path>
+<path d="M3439.3 95.6 L3436.1 99.9 L3433.0 104.2 L3425.4 92.0 Z"></path>
+<g stroke-dasharray="6 6">
+<path d="M3824.3 105.3 L3824.25 173 L3824.25 223 L3824.3 223.0 " fill="none"></path>
+</g>
+<path d="M3829.6 105.3 L3824.3 105.3 L3818.9 105.3 L3824.3 92.0 Z"></path>
+<path d="M511.0 353.5 L511 396 L511 416 L511.0 416.0 " fill="none"></path>
+<g data-name="AppModule">
+<g fill="#eee8d5" stroke="#33322E" data-name="AppModule">
+<rect x="0.0" y="53.0" height="47.0" width="105.0" data-name="AppModule"></rect>
+<path d="M0.0 84.0 L105.0 84.0" fill="none" data-name="AppModule"></path>
+<path d="M0.0 92.0 L105.0 92.0" fill="none" data-name="AppModule"></path>
+</g>
+<g transform="translate(0, 53)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="AppModule">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="AppModule">
+<a id="src/app.module.ts.AppModule" xlink:href="src/app.module.ts"><text x="44.5" y="13.5" stroke="none" text-anchor="middle" data-name="AppModule">AppModule</text></a>
+
+</g>
+</g>
+<g transform="translate(0, 84)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="AppModule">
+<g transform="translate(8, 8)" fill="#33322E" data-name="AppModule">
+
+</g>
+</g>
+<g transform="translate(0, 92)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="AppModule">
+<g transform="translate(8, 8)" fill="#33322E" data-name="AppModule">
+
+</g>
+</g>
+</g>
+<g data-name="DatabaseModule">
+<g fill="#eee8d5" stroke="#33322E" data-name="DatabaseModule">
+<rect x="145.0" y="53.0" height="47.0" width="150.0" data-name="DatabaseModule"></rect>
+<path d="M145.0 84.0 L295.0 84.0" fill="none" data-name="DatabaseModule"></path>
+<path d="M145.0 92.0 L295.0 92.0" fill="none" data-name="DatabaseModule"></path>
+</g>
+<g transform="translate(145, 53)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="DatabaseModule">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="DatabaseModule">
+<a id="src/database.module.ts.DatabaseModule" xlink:href="src/database.module.ts"><text x="67.0" y="13.5" stroke="none" text-anchor="middle" data-name="DatabaseModule">DatabaseModule</text></a>
+
+</g>
+</g>
+<g transform="translate(145, 84)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="DatabaseModule">
+<g transform="translate(8, 8)" fill="#33322E" data-name="DatabaseModule">
+
+</g>
+</g>
+<g transform="translate(145, 92)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="DatabaseModule">
+<g transform="translate(8, 8)" fill="#33322E" data-name="DatabaseModule">
+
+</g>
+</g>
+</g>
+<g data-name="AuthController">
+<g fill="#eee8d5" stroke="#33322E" data-name="AuthController">
+<rect x="335.0" y="7.5" height="138.0" width="352.0" data-name="AuthController"></rect>
+<path d="M335.0 38.5 L687.0 38.5" fill="none" data-name="AuthController"></path>
+<path d="M335.0 69.5 L687.0 69.5" fill="none" data-name="AuthController"></path>
+</g>
+<g transform="translate(335, 7.5)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="AuthController">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="AuthController">
+<a id="src/auth/auth.controller.ts.AuthController" xlink:href="src/auth/auth.controller.ts"><text x="168.0" y="13.5" stroke="none" text-anchor="middle" data-name="AuthController">AuthController</text></a>
+
+</g>
+</g>
+<g transform="translate(335, 38.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="AuthController">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="AuthController">
+<text x="0.0" y="13.5" stroke="none" data-name="AuthController">-authService: AuthService</text>
+
+</g>
+</g>
+<g transform="translate(335, 69.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="AuthController">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="AuthController">
+<text x="0.0" y="13.5" stroke="none" data-name="AuthController">+signUp(): Promise&lt;{ access_token: string</text>
+<text x="0.0" y="28.5" stroke="none" data-name="AuthController">}&gt;</text>
+<text x="0.0" y="43.5" stroke="none" data-name="AuthController">+signIn(): Promise&lt;{ access_token: string</text>
+<text x="0.0" y="58.5" stroke="none" data-name="AuthController">}&gt;</text>
+
+</g>
+</g>
+</g>
+<g data-name="AuthService">
+<g fill="#eee8d5" stroke="#33322E" data-name="AuthService">
+<rect x="357.0" y="215.5" height="138.0" width="308.0" data-name="AuthService"></rect>
+<path d="M357.0 246.5 L665.0 246.5" fill="none" data-name="AuthService"></path>
+<path d="M357.0 307.5 L665.0 307.5" fill="none" data-name="AuthService"></path>
+</g>
+<g transform="translate(357, 215.5)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="AuthService">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="AuthService">
+<a id="src/auth/services/auth.service.ts.AuthService" xlink:href="src/auth/services/auth.service.ts"><text x="146.0" y="13.5" stroke="none" text-anchor="middle" data-name="AuthService">AuthService</text></a>
+
+</g>
+</g>
+<g transform="translate(357, 246.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="AuthService">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="AuthService">
+<text x="0.0" y="13.5" stroke="none" data-name="AuthService">-jwtService: JwtService</text>
+<text x="0.0" y="28.5" stroke="none" data-name="AuthService">-passwordService: PasswordService</text>
+<text x="0.0" y="43.5" stroke="none" data-name="AuthService">-userService: UserService</text>
+
+</g>
+</g>
+<g transform="translate(357, 307.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="AuthService">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="AuthService">
+<text x="0.0" y="13.5" stroke="none" data-name="AuthService">+signUp(): Promise&lt;IAuthResponse&gt;</text>
+<text x="0.0" y="28.5" stroke="none" data-name="AuthService">+signIn(): Promise&lt;IAuthResponse&gt;</text>
+
+</g>
+</g>
+</g>
+<g data-name="AuthModule">
+<g fill="#eee8d5" stroke="#33322E" data-name="AuthModule">
+<rect x="727.0" y="53.0" height="47.0" width="110.0" data-name="AuthModule"></rect>
+<path d="M727.0 84.0 L837.0 84.0" fill="none" data-name="AuthModule"></path>
+<path d="M727.0 92.0 L837.0 92.0" fill="none" data-name="AuthModule"></path>
+</g>
+<g transform="translate(727, 53)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="AuthModule">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="AuthModule">
+<a id="src/auth/auth.module.ts.AuthModule" xlink:href="src/auth/auth.module.ts"><text x="47.0" y="13.5" stroke="none" text-anchor="middle" data-name="AuthModule">AuthModule</text></a>
+
+</g>
+</g>
+<g transform="translate(727, 84)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="AuthModule">
+<g transform="translate(8, 8)" fill="#33322E" data-name="AuthModule">
+
+</g>
+</g>
+<g transform="translate(727, 92)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="AuthModule">
+<g transform="translate(8, 8)" fill="#33322E" data-name="AuthModule">
+
+</g>
+</g>
+</g>
+<g data-name="ImagesModule">
+<g fill="#eee8d5" stroke="#33322E" data-name="ImagesModule">
+<rect x="877.0" y="53.0" height="47.0" width="132.0" data-name="ImagesModule"></rect>
+<path d="M877.0 84.0 L1009.0 84.0" fill="none" data-name="ImagesModule"></path>
+<path d="M877.0 92.0 L1009.0 92.0" fill="none" data-name="ImagesModule"></path>
+</g>
+<g transform="translate(877, 53)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="ImagesModule">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="ImagesModule">
+<a id="src/images/images.module.ts.ImagesModule" xlink:href="src/images/images.module.ts"><text x="58.0" y="13.5" stroke="none" text-anchor="middle" data-name="ImagesModule">ImagesModule</text></a>
+
+</g>
+</g>
+<g transform="translate(877, 84)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="ImagesModule">
+<g transform="translate(8, 8)" fill="#33322E" data-name="ImagesModule">
+
+</g>
+</g>
+<g transform="translate(877, 92)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="ImagesModule">
+<g transform="translate(8, 8)" fill="#33322E" data-name="ImagesModule">
+
+</g>
+</g>
+</g>
+<g data-name="ImagesService">
+<g fill="#eee8d5" stroke="#33322E" data-name="ImagesService">
+<rect x="1049.0" y="7.5" height="138.0" width="319.0" data-name="ImagesService"></rect>
+<path d="M1049.0 38.5 L1368.0 38.5" fill="none" data-name="ImagesService"></path>
+<path d="M1049.0 69.5 L1368.0 69.5" fill="none" data-name="ImagesService"></path>
+</g>
+<g transform="translate(1049, 7.5)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="ImagesService">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="ImagesService">
+<a id="src/images/images.service.ts.ImagesService" xlink:href="src/images/images.service.ts"><text x="151.5" y="13.5" stroke="none" text-anchor="middle" data-name="ImagesService">ImagesService</text></a>
+
+</g>
+</g>
+<g transform="translate(1049, 38.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="ImagesService">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="ImagesService">
+<text x="0.0" y="13.5" stroke="none" data-name="ImagesService">-imageRepository: Repository&lt;Image&gt;</text>
+
+</g>
+</g>
+<g transform="translate(1049, 69.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="ImagesService">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="ImagesService">
+<text x="0.0" y="13.5" stroke="none" data-name="ImagesService">+create(): Promise&lt;Image&gt;</text>
+<text x="0.0" y="28.5" stroke="none" data-name="ImagesService">+findOneById(): Promise&lt;Image&gt;</text>
+<text x="0.0" y="43.5" stroke="none" data-name="ImagesService">+update(): Promise&lt;Image&gt;</text>
+<text x="0.0" y="58.5" stroke="none" data-name="ImagesService">+removeById(): Promise&lt;void&gt;</text>
+
+</g>
+</g>
+</g>
+<g data-name="ProjectController">
+<g fill="#eee8d5" stroke="#33322E" data-name="ProjectController">
+<rect x="1408.0" y="0.0" height="153.0" width="259.0" data-name="ProjectController"></rect>
+<path d="M1408.0 31.0 L1667.0 31.0" fill="none" data-name="ProjectController"></path>
+<path d="M1408.0 62.0 L1667.0 62.0" fill="none" data-name="ProjectController"></path>
+</g>
+<g transform="translate(1408, 0)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="ProjectController">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="ProjectController">
+<a id="src/project/project.controller.ts.ProjectController" xlink:href="src/project/project.controller.ts"><text x="121.5" y="13.5" stroke="none" text-anchor="middle" data-name="ProjectController">ProjectController</text></a>
+
+</g>
+</g>
+<g transform="translate(1408, 31)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="ProjectController">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="ProjectController">
+<text x="0.0" y="13.5" stroke="none" data-name="ProjectController">-projectService: ProjectService</text>
+
+</g>
+</g>
+<g transform="translate(1408, 62)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="ProjectController">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="ProjectController">
+<text x="0.0" y="13.5" stroke="none" data-name="ProjectController">+create(): Promise&lt;Project&gt;</text>
+<text x="0.0" y="28.5" stroke="none" data-name="ProjectController">+findAll(): Promise&lt;Project[]&gt;</text>
+<text x="0.0" y="43.5" stroke="none" data-name="ProjectController">+findOne(): Promise&lt;Project&gt;</text>
+<text x="0.0" y="58.5" stroke="none" data-name="ProjectController">+update(): Promise&lt;Project&gt;</text>
+<text x="0.0" y="73.5" stroke="none" data-name="ProjectController">+remove(): Promise&lt;void&gt;</text>
+
+</g>
+</g>
+</g>
+<g data-name="ProjectService">
+<g fill="#eee8d5" stroke="#33322E" data-name="ProjectService">
+<rect x="1372.0" y="193.0" height="183.0" width="331.0" data-name="ProjectService"></rect>
+<path d="M1372.0 224.0 L1703.0 224.0" fill="none" data-name="ProjectService"></path>
+<path d="M1372.0 285.0 L1703.0 285.0" fill="none" data-name="ProjectService"></path>
+</g>
+<g transform="translate(1372, 193)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="ProjectService">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="ProjectService">
+<a id="src/project/project.service.ts.ProjectService" xlink:href="src/project/project.service.ts"><text x="157.5" y="13.5" stroke="none" text-anchor="middle" data-name="ProjectService">ProjectService</text></a>
+
+</g>
+</g>
+<g transform="translate(1372, 224)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="ProjectService">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="ProjectService">
+<text x="0.0" y="13.5" stroke="none" data-name="ProjectService">-projectRepository: Repository&lt;Project&gt;</text>
+<text x="0.0" y="28.5" stroke="none" data-name="ProjectService">-userService: UserService</text>
+<text x="0.0" y="43.5" stroke="none" data-name="ProjectService">-imageService: ImagesService</text>
+
+</g>
+</g>
+<g transform="translate(1372, 285)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="ProjectService">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="ProjectService">
+<text x="0.0" y="13.5" stroke="none" data-name="ProjectService">+create(): Promise&lt;Project&gt;</text>
+<text x="0.0" y="28.5" stroke="none" data-name="ProjectService">+findAllByUserId(): Promise&lt;Project[]&gt;</text>
+<text x="0.0" y="43.5" stroke="none" data-name="ProjectService">+findOneById(): Promise&lt;Project&gt;</text>
+<text x="0.0" y="58.5" stroke="none" data-name="ProjectService">+update(): Promise&lt;Project&gt;</text>
+<text x="0.0" y="73.5" stroke="none" data-name="ProjectService">+remove(): Promise&lt;void&gt;</text>
+
+</g>
+</g>
+</g>
+<g data-name="ProjectModule">
+<g fill="#eee8d5" stroke="#33322E" data-name="ProjectModule">
+<rect x="1707.0" y="53.0" height="47.0" width="129.0" data-name="ProjectModule"></rect>
+<path d="M1707.0 84.0 L1836.0 84.0" fill="none" data-name="ProjectModule"></path>
+<path d="M1707.0 92.0 L1836.0 92.0" fill="none" data-name="ProjectModule"></path>
+</g>
+<g transform="translate(1707, 53)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="ProjectModule">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="ProjectModule">
+<a id="src/project/project.module.ts.ProjectModule" xlink:href="src/project/project.module.ts"><text x="56.5" y="13.5" stroke="none" text-anchor="middle" data-name="ProjectModule">ProjectModule</text></a>
+
+</g>
+</g>
+<g transform="translate(1707, 84)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="ProjectModule">
+<g transform="translate(8, 8)" fill="#33322E" data-name="ProjectModule">
+
+</g>
+</g>
+<g transform="translate(1707, 92)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="ProjectModule">
+<g transform="translate(8, 8)" fill="#33322E" data-name="ProjectModule">
+
+</g>
+</g>
+</g>
+<g data-name="UserModule">
+<g fill="#eee8d5" stroke="#33322E" data-name="UserModule">
+<rect x="1876.0" y="53.0" height="47.0" width="111.0" data-name="UserModule"></rect>
+<path d="M1876.0 84.0 L1987.0 84.0" fill="none" data-name="UserModule"></path>
+<path d="M1876.0 92.0 L1987.0 92.0" fill="none" data-name="UserModule"></path>
+</g>
+<g transform="translate(1876, 53)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="UserModule">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="UserModule">
+<a id="src/user/user.module.ts.UserModule" xlink:href="src/user/user.module.ts"><text x="47.5" y="13.5" stroke="none" text-anchor="middle" data-name="UserModule">UserModule</text></a>
+
+</g>
+</g>
+<g transform="translate(1876, 84)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="UserModule">
+<g transform="translate(8, 8)" fill="#33322E" data-name="UserModule">
+
+</g>
+</g>
+<g transform="translate(1876, 92)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="UserModule">
+<g transform="translate(8, 8)" fill="#33322E" data-name="UserModule">
+
+</g>
+</g>
+</g>
+<g data-name="UserService">
+<g fill="#eee8d5" stroke="#33322E" data-name="UserService">
+<rect x="2027.0" y="22.5" height="108.0" width="294.0" data-name="UserService"></rect>
+<path d="M2027.0 53.5 L2321.0 53.5" fill="none" data-name="UserService"></path>
+<path d="M2027.0 84.5 L2321.0 84.5" fill="none" data-name="UserService"></path>
+</g>
+<g transform="translate(2027, 22.5)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="UserService">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="UserService">
+<a id="src/user/user.service.ts.UserService" xlink:href="src/user/user.service.ts"><text x="139.0" y="13.5" stroke="none" text-anchor="middle" data-name="UserService">UserService</text></a>
+
+</g>
+</g>
+<g transform="translate(2027, 53.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="UserService">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="UserService">
+<text x="0.0" y="13.5" stroke="none" data-name="UserService">-userRepository: Repository&lt;User&gt;</text>
+
+</g>
+</g>
+<g transform="translate(2027, 84.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="UserService">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="UserService">
+<text x="0.0" y="13.5" stroke="none" data-name="UserService">+create(): Promise&lt;User&gt;</text>
+<text x="0.0" y="28.5" stroke="none" data-name="UserService">+findOne(): Promise&lt;IUser&gt;</text>
+
+</g>
+</g>
+</g>
+<g data-name="SignInDto">
+<g fill="#eee8d5" stroke="#33322E" data-name="SignInDto">
+<rect x="2361.0" y="34.0" height="85.0" width="156.0" data-name="SignInDto"></rect>
+<path d="M2361.0 65.0 L2517.0 65.0" fill="none" data-name="SignInDto"></path>
+<path d="M2361.0 111.0 L2517.0 111.0" fill="none" data-name="SignInDto"></path>
+</g>
+<g transform="translate(2361, 34)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="SignInDto">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="SignInDto">
+<a id="src/auth/dto/sign-in.dto.ts.SignInDto" xlink:href="src/auth/dto/sign-in.dto.ts"><text x="70.0" y="13.5" stroke="none" text-anchor="middle" data-name="SignInDto">SignInDto</text></a>
+
+</g>
+</g>
+<g transform="translate(2361, 65)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="SignInDto">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="SignInDto">
+<text x="0.0" y="13.5" stroke="none" data-name="SignInDto">+password: string</text>
+<text x="0.0" y="28.5" stroke="none" data-name="SignInDto">+email: string</text>
+
+</g>
+</g>
+<g transform="translate(2361, 111)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="SignInDto">
+<g transform="translate(8, 8)" fill="#33322E" data-name="SignInDto">
+
+</g>
+</g>
+</g>
+<g data-name="SignUpDto">
+<g fill="#eee8d5" stroke="#33322E" data-name="SignUpDto">
+<rect x="2557.0" y="26.5" height="100.0" width="156.0" data-name="SignUpDto"></rect>
+<path d="M2557.0 57.5 L2713.0 57.5" fill="none" data-name="SignUpDto"></path>
+<path d="M2557.0 118.5 L2713.0 118.5" fill="none" data-name="SignUpDto"></path>
+</g>
+<g transform="translate(2557, 26.5)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="SignUpDto">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="SignUpDto">
+<a id="src/auth/dto/sign-up.dto.ts.SignUpDto" xlink:href="src/auth/dto/sign-up.dto.ts"><text x="70.0" y="13.5" stroke="none" text-anchor="middle" data-name="SignUpDto">SignUpDto</text></a>
+
+</g>
+</g>
+<g transform="translate(2557, 57.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="SignUpDto">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="SignUpDto">
+<text x="0.0" y="13.5" stroke="none" data-name="SignUpDto">+name: string</text>
+<text x="0.0" y="28.5" stroke="none" data-name="SignUpDto">+password: string</text>
+<text x="0.0" y="43.5" stroke="none" data-name="SignUpDto">+email: string</text>
+
+</g>
+</g>
+<g transform="translate(2557, 118.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="SignUpDto">
+<g transform="translate(8, 8)" fill="#33322E" data-name="SignUpDto">
+
+</g>
+</g>
+</g>
+<g data-name="IncorrectPasswordException">
+<g fill="#eee8d5" stroke="#33322E" data-name="IncorrectPasswordException">
+<rect x="2108.8" y="261.0" height="47.0" width="241.0" data-name="IncorrectPasswordException"></rect>
+<path d="M2108.8 292.0 L2349.8 292.0" fill="none" data-name="IncorrectPasswordException"></path>
+<path d="M2108.8 300.0 L2349.8 300.0" fill="none" data-name="IncorrectPasswordException"></path>
+</g>
+<g transform="translate(2108.75, 261)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="IncorrectPasswordException">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="IncorrectPasswordException">
+<a id="src/auth/exceptions/incorrect-password.exception.ts.IncorrectPasswordException" xlink:href="src/auth/exceptions/incorrect-password.exception.ts"><text x="112.5" y="13.5" stroke="none" text-anchor="middle" data-name="IncorrectPasswordException">IncorrectPasswordException</text></a>
+
+</g>
+</g>
+<g transform="translate(2108.75, 292)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="IncorrectPasswordException">
+<g transform="translate(8, 8)" fill="#33322E" data-name="IncorrectPasswordException">
+
+</g>
+</g>
+<g transform="translate(2108.75, 300)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="IncorrectPasswordException">
+<g transform="translate(8, 8)" fill="#33322E" data-name="IncorrectPasswordException">
+
+</g>
+</g>
+</g>
+<g data-name="UnauthorizedException">
+<g fill="#eee8d5" stroke="#33322E" data-name="UnauthorizedException">
+<rect x="2753.0" y="61.0" height="31.0" width="200.0" data-name="UnauthorizedException"></rect>
+</g>
+<g transform="translate(2753, 61)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="UnauthorizedException">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="UnauthorizedException">
+<text x="92.0" y="13.5" stroke="none" text-anchor="middle" data-name="UnauthorizedException">UnauthorizedException</text>
+
+</g>
+</g>
+</g>
+<g data-name="InvalidTokenException">
+<g fill="#eee8d5" stroke="#33322E" data-name="InvalidTokenException">
+<rect x="2622.8" y="261.0" height="47.0" width="195.0" data-name="InvalidTokenException"></rect>
+<path d="M2622.8 292.0 L2817.8 292.0" fill="none" data-name="InvalidTokenException"></path>
+<path d="M2622.8 300.0 L2817.8 300.0" fill="none" data-name="InvalidTokenException"></path>
+</g>
+<g transform="translate(2622.75, 261)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="InvalidTokenException">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="InvalidTokenException">
+<a id="src/auth/exceptions/invalid-token-exception.ts.InvalidTokenException" xlink:href="src/auth/exceptions/invalid-token-exception.ts"><text x="89.5" y="13.5" stroke="none" text-anchor="middle" data-name="InvalidTokenException">InvalidTokenException</text></a>
+
+</g>
+</g>
+<g transform="translate(2622.75, 292)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="InvalidTokenException">
+<g transform="translate(8, 8)" fill="#33322E" data-name="InvalidTokenException">
+
+</g>
+</g>
+<g transform="translate(2622.75, 300)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="InvalidTokenException">
+<g transform="translate(8, 8)" fill="#33322E" data-name="InvalidTokenException">
+
+</g>
+</g>
+</g>
+<g data-name="AuthTokenNotFoundException">
+<g fill="#eee8d5" stroke="#33322E" data-name="AuthTokenNotFoundException">
+<rect x="2857.8" y="261.0" height="47.0" width="256.0" data-name="AuthTokenNotFoundException"></rect>
+<path d="M2857.8 292.0 L3113.8 292.0" fill="none" data-name="AuthTokenNotFoundException"></path>
+<path d="M2857.8 300.0 L3113.8 300.0" fill="none" data-name="AuthTokenNotFoundException"></path>
+</g>
+<g transform="translate(2857.75, 261)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="AuthTokenNotFoundException">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="AuthTokenNotFoundException">
+<a id="src/auth/exceptions/no-auth-token.exception.ts.AuthTokenNotFoundException" xlink:href="src/auth/exceptions/no-auth-token.exception.ts"><text x="120.0" y="13.5" stroke="none" text-anchor="middle" data-name="AuthTokenNotFoundException">AuthTokenNotFoundException</text></a>
+
+</g>
+</g>
+<g transform="translate(2857.75, 292)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="AuthTokenNotFoundException">
+<g transform="translate(8, 8)" fill="#33322E" data-name="AuthTokenNotFoundException">
+
+</g>
+</g>
+<g transform="translate(2857.75, 300)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="AuthTokenNotFoundException">
+<g transform="translate(8, 8)" fill="#33322E" data-name="AuthTokenNotFoundException">
+
+</g>
+</g>
+</g>
+<g data-name="UserAlreadyExistsException">
+<g fill="#eee8d5" stroke="#33322E" data-name="UserAlreadyExistsException">
+<rect x="3153.8" y="261.0" height="47.0" width="238.0" data-name="UserAlreadyExistsException"></rect>
+<path d="M3153.8 292.0 L3391.8 292.0" fill="none" data-name="UserAlreadyExistsException"></path>
+<path d="M3153.8 300.0 L3391.8 300.0" fill="none" data-name="UserAlreadyExistsException"></path>
+</g>
+<g transform="translate(3153.75, 261)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="UserAlreadyExistsException">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="UserAlreadyExistsException">
+<a id="src/auth/exceptions/user-already-exists.exception.ts.UserAlreadyExistsException" xlink:href="src/auth/exceptions/user-already-exists.exception.ts"><text x="111.0" y="13.5" stroke="none" text-anchor="middle" data-name="UserAlreadyExistsException">UserAlreadyExistsException</text></a>
+
+</g>
+</g>
+<g transform="translate(3153.75, 292)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="UserAlreadyExistsException">
+<g transform="translate(8, 8)" fill="#33322E" data-name="UserAlreadyExistsException">
+
+</g>
+</g>
+<g transform="translate(3153.75, 300)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="UserAlreadyExistsException">
+<g transform="translate(8, 8)" fill="#33322E" data-name="UserAlreadyExistsException">
+
+</g>
+</g>
+</g>
+<g data-name="BadRequestException">
+<g fill="#eee8d5" stroke="#33322E" data-name="BadRequestException">
+<rect x="3308.8" y="61.0" height="31.0" width="191.0" data-name="BadRequestException"></rect>
+</g>
+<g transform="translate(3308.75, 61)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="BadRequestException">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="BadRequestException">
+<text x="87.5" y="13.5" stroke="none" text-anchor="middle" data-name="BadRequestException">BadRequestException</text>
+
+</g>
+</g>
+</g>
+<g data-name="UserNotFoundException">
+<g fill="#eee8d5" stroke="#33322E" data-name="UserNotFoundException">
+<rect x="3431.8" y="261.0" height="47.0" width="208.0" data-name="UserNotFoundException"></rect>
+<path d="M3431.8 292.0 L3639.8 292.0" fill="none" data-name="UserNotFoundException"></path>
+<path d="M3431.8 300.0 L3639.8 300.0" fill="none" data-name="UserNotFoundException"></path>
+</g>
+<g transform="translate(3431.75, 261)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="UserNotFoundException">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="UserNotFoundException">
+<a id="src/auth/exceptions/user-not-found.exception.ts.UserNotFoundException" xlink:href="src/auth/exceptions/user-not-found.exception.ts"><text x="96.0" y="13.5" stroke="none" text-anchor="middle" data-name="UserNotFoundException">UserNotFoundException</text></a>
+
+</g>
+</g>
+<g transform="translate(3431.75, 292)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="UserNotFoundException">
+<g transform="translate(8, 8)" fill="#33322E" data-name="UserNotFoundException">
+
+</g>
+</g>
+<g transform="translate(3431.75, 300)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="UserNotFoundException">
+<g transform="translate(8, 8)" fill="#33322E" data-name="UserNotFoundException">
+
+</g>
+</g>
+</g>
+<g data-name="AuthGuard">
+<g fill="#eee8d5" stroke="#33322E" data-name="AuthGuard">
+<rect x="3679.8" y="223.0" height="123.0" width="289.0" data-name="AuthGuard"></rect>
+<path d="M3679.8 254.0 L3968.8 254.0" fill="none" data-name="AuthGuard"></path>
+<path d="M3679.8 300.0 L3968.8 300.0" fill="none" data-name="AuthGuard"></path>
+</g>
+<g transform="translate(3679.75, 223)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="AuthGuard">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="AuthGuard">
+<a id="src/auth/guards/auth.guard.ts.AuthGuard" xlink:href="src/auth/guards/auth.guard.ts"><text x="136.5" y="13.5" stroke="none" text-anchor="middle" data-name="AuthGuard">AuthGuard</text></a>
+
+</g>
+</g>
+<g transform="translate(3679.75, 254)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="AuthGuard">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="AuthGuard">
+<text x="0.0" y="13.5" stroke="none" data-name="AuthGuard">-jwtService: JwtService</text>
+<text x="0.0" y="28.5" stroke="none" data-name="AuthGuard">-userService: UserService</text>
+
+</g>
+</g>
+<g transform="translate(3679.75, 300)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="AuthGuard">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="AuthGuard">
+<text x="0.0" y="13.5" stroke="none" data-name="AuthGuard">+canActivate(): Promise&lt;boolean&gt;</text>
+<text x="0.0" y="28.5" stroke="none" data-name="AuthGuard">-extractTokenFromHeader(): string</text>
+
+</g>
+</g>
+</g>
+<g data-name="CanActivate">
+<g fill="#eee8d5" stroke="#33322E" data-name="CanActivate">
+<rect x="3768.8" y="61.0" height="31.0" width="111.0" data-name="CanActivate"></rect>
+</g>
+<g transform="translate(3768.75, 61)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="CanActivate">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="CanActivate">
+<text x="47.5" y="13.5" stroke="none" text-anchor="middle" data-name="CanActivate">CanActivate</text>
+
+</g>
+</g>
+</g>
+<g data-name="IAuthData">
+<g fill="lightblue" stroke="#33322E" data-name="IAuthData">
+<rect x="3919.8" y="26.5" height="100.0" width="156.0" data-name="IAuthData"></rect>
+<path d="M3919.8 57.5 L4075.8 57.5" fill="none" data-name="IAuthData"></path>
+<path d="M3919.8 118.5 L4075.8 118.5" fill="none" data-name="IAuthData"></path>
+</g>
+<g transform="translate(3919.75, 26.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="IAuthData">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="IAuthData">
+<a id="src/auth/interfaces/auth-data.interface.ts.IAuthData" xlink:href="src/auth/interfaces/auth-data.interface.ts"><text x="70.0" y="13.5" stroke="none" text-anchor="middle" data-name="IAuthData">IAuthData</text></a>
+
+</g>
+</g>
+<g transform="translate(3919.75, 57.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="IAuthData">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="IAuthData">
+<text x="0.0" y="13.5" stroke="none" data-name="IAuthData">+name?: string</text>
+<text x="0.0" y="28.5" stroke="none" data-name="IAuthData">+email: string</text>
+<text x="0.0" y="43.5" stroke="none" data-name="IAuthData">+password: string</text>
+
+</g>
+</g>
+<g transform="translate(3919.75, 118.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="IAuthData">
+<g transform="translate(8, 8)" fill="#33322E" data-name="IAuthData">
+
+</g>
+</g>
+</g>
+<g data-name="IAuthResponse">
+<g fill="lightblue" stroke="#33322E" data-name="IAuthResponse">
+<rect x="4115.8" y="34.0" height="85.0" width="190.0" data-name="IAuthResponse"></rect>
+<path d="M4115.8 65.0 L4305.8 65.0" fill="none" data-name="IAuthResponse"></path>
+<path d="M4115.8 111.0 L4305.8 111.0" fill="none" data-name="IAuthResponse"></path>
+</g>
+<g transform="translate(4115.75, 34)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="IAuthResponse">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="IAuthResponse">
+<a id="src/auth/interfaces/auth-response.interface.ts.IAuthResponse" xlink:href="src/auth/interfaces/auth-response.interface.ts"><text x="87.0" y="13.5" stroke="none" text-anchor="middle" data-name="IAuthResponse">IAuthResponse</text></a>
+
+</g>
+</g>
+<g transform="translate(4115.75, 65)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="IAuthResponse">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="IAuthResponse">
+<text x="0.0" y="13.5" stroke="none" data-name="IAuthResponse">+access_token: string</text>
+<text x="0.0" y="28.5" stroke="none" data-name="IAuthResponse">+userId: number</text>
+
+</g>
+</g>
+<g transform="translate(4115.75, 111)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="IAuthResponse">
+<g transform="translate(8, 8)" fill="#33322E" data-name="IAuthResponse">
+
+</g>
+</g>
+</g>
+<g data-name="PasswordService">
+<g fill="#eee8d5" stroke="#33322E" data-name="PasswordService">
+<rect x="251.5" y="416.0" height="108.0" width="519.0" data-name="PasswordService"></rect>
+<path d="M251.5 447.0 L770.5 447.0" fill="none" data-name="PasswordService"></path>
+<path d="M251.5 478.0 L770.5 478.0" fill="none" data-name="PasswordService"></path>
+</g>
+<g transform="translate(251.5, 416)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="PasswordService">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="PasswordService">
+<a id="src/auth/services/password.service.ts.PasswordService" xlink:href="src/auth/services/password.service.ts"><text x="251.5" y="13.5" stroke="none" text-anchor="middle" data-name="PasswordService">PasswordService</text></a>
+
+</g>
+</g>
+<g transform="translate(251.5, 447)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="PasswordService">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="PasswordService">
+<text x="0.0" y="13.5" stroke="none" data-name="PasswordService">-configService: ConfigService&lt;Record&lt;string, unknown&gt;, false&gt;</text>
+
+</g>
+</g>
+<g transform="translate(251.5, 478)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="PasswordService">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="PasswordService">
+<text x="0.0" y="13.5" stroke="none" data-name="PasswordService">+hash(): Promise&lt;string&gt;</text>
+<text x="0.0" y="28.5" stroke="none" data-name="PasswordService">+compare(): Promise&lt;boolean&gt;</text>
+
+</g>
+</g>
+</g>
+<g data-name="CreateImageDto">
+<g fill="#eee8d5" stroke="#33322E" data-name="CreateImageDto">
+<rect x="4345.8" y="53.0" height="47.0" width="145.0" data-name="CreateImageDto"></rect>
+<path d="M4345.8 84.0 L4490.8 84.0" fill="none" data-name="CreateImageDto"></path>
+<path d="M4345.8 92.0 L4490.8 92.0" fill="none" data-name="CreateImageDto"></path>
+</g>
+<g transform="translate(4345.75, 53)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="CreateImageDto">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="CreateImageDto">
+<a id="src/images/dto/create-image.dto.ts.CreateImageDto" xlink:href="src/images/dto/create-image.dto.ts"><text x="64.5" y="13.5" stroke="none" text-anchor="middle" data-name="CreateImageDto">CreateImageDto</text></a>
+
+</g>
+</g>
+<g transform="translate(4345.75, 84)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="CreateImageDto">
+<g transform="translate(8, 8)" fill="#33322E" data-name="CreateImageDto">
+
+</g>
+</g>
+<g transform="translate(4345.75, 92)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="CreateImageDto">
+<g transform="translate(8, 8)" fill="#33322E" data-name="CreateImageDto">
+
+</g>
+</g>
+</g>
+<g data-name="UpdateImageDto">
+<g fill="#eee8d5" stroke="#33322E" data-name="UpdateImageDto">
+<rect x="4530.8" y="53.0" height="47.0" width="149.0" data-name="UpdateImageDto"></rect>
+<path d="M4530.8 84.0 L4679.8 84.0" fill="none" data-name="UpdateImageDto"></path>
+<path d="M4530.8 92.0 L4679.8 92.0" fill="none" data-name="UpdateImageDto"></path>
+</g>
+<g transform="translate(4530.75, 53)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="UpdateImageDto">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="UpdateImageDto">
+<a id="src/images/dto/update-image.dto.ts.UpdateImageDto" xlink:href="src/images/dto/update-image.dto.ts"><text x="66.5" y="13.5" stroke="none" text-anchor="middle" data-name="UpdateImageDto">UpdateImageDto</text></a>
+
+</g>
+</g>
+<g transform="translate(4530.75, 84)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="UpdateImageDto">
+<g transform="translate(8, 8)" fill="#33322E" data-name="UpdateImageDto">
+
+</g>
+</g>
+<g transform="translate(4530.75, 92)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="UpdateImageDto">
+<g transform="translate(8, 8)" fill="#33322E" data-name="UpdateImageDto">
+
+</g>
+</g>
+</g>
+<g data-name="Image">
+<g fill="#eee8d5" stroke="#33322E" data-name="Image">
+<rect x="4719.8" y="26.5" height="100.0" width="145.0" data-name="Image"></rect>
+<path d="M4719.8 57.5 L4864.8 57.5" fill="none" data-name="Image"></path>
+<path d="M4719.8 118.5 L4864.8 118.5" fill="none" data-name="Image"></path>
+</g>
+<g transform="translate(4719.75, 26.5)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="Image">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Image">
+<a id="src/images/entities/image.entity.ts.Image" xlink:href="src/images/entities/image.entity.ts"><text x="64.5" y="13.5" stroke="none" text-anchor="middle" data-name="Image">Image</text></a>
+
+</g>
+</g>
+<g transform="translate(4719.75, 57.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Image">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="Image">
+<text x="0.0" y="13.5" stroke="none" data-name="Image">+id: number</text>
+<text x="0.0" y="28.5" stroke="none" data-name="Image">+image: string</text>
+<text x="0.0" y="43.5" stroke="none" data-name="Image">+project: Project</text>
+
+</g>
+</g>
+<g transform="translate(4719.75, 118.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Image">
+<g transform="translate(8, 8)" fill="#33322E" data-name="Image">
+
+</g>
+</g>
+</g>
+<g data-name="ICreateImage">
+<g fill="lightblue" stroke="#33322E" data-name="ICreateImage">
+<rect x="4904.8" y="41.5" height="70.0" width="128.0" data-name="ICreateImage"></rect>
+<path d="M4904.8 72.5 L5032.8 72.5" fill="none" data-name="ICreateImage"></path>
+<path d="M4904.8 103.5 L5032.8 103.5" fill="none" data-name="ICreateImage"></path>
+</g>
+<g transform="translate(4904.75, 41.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="ICreateImage">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="ICreateImage">
+<a id="src/images/interfaces/create-image.interface.ts.ICreateImage" xlink:href="src/images/interfaces/create-image.interface.ts"><text x="56.0" y="13.5" stroke="none" text-anchor="middle" data-name="ICreateImage">ICreateImage</text></a>
+
+</g>
+</g>
+<g transform="translate(4904.75, 72.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="ICreateImage">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="ICreateImage">
+<text x="0.0" y="13.5" stroke="none" data-name="ICreateImage">+image: string</text>
+
+</g>
+</g>
+<g transform="translate(4904.75, 103.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="ICreateImage">
+<g transform="translate(8, 8)" fill="#33322E" data-name="ICreateImage">
+
+</g>
+</g>
+</g>
+<g data-name="CreateProjectDto">
+<g fill="#eee8d5" stroke="#33322E" data-name="CreateProjectDto">
+<rect x="5072.8" y="26.5" height="100.0" width="151.0" data-name="CreateProjectDto"></rect>
+<path d="M5072.8 57.5 L5223.8 57.5" fill="none" data-name="CreateProjectDto"></path>
+<path d="M5072.8 118.5 L5223.8 118.5" fill="none" data-name="CreateProjectDto"></path>
+</g>
+<g transform="translate(5072.75, 26.5)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="CreateProjectDto">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="CreateProjectDto">
+<a id="src/project/dto/create-project.dto.ts.CreateProjectDto" xlink:href="src/project/dto/create-project.dto.ts"><text x="67.5" y="13.5" stroke="none" text-anchor="middle" data-name="CreateProjectDto">CreateProjectDto</text></a>
+
+</g>
+</g>
+<g transform="translate(5072.75, 57.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="CreateProjectDto">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="CreateProjectDto">
+<text x="0.0" y="13.5" stroke="none" data-name="CreateProjectDto">+userId: number</text>
+<text x="0.0" y="28.5" stroke="none" data-name="CreateProjectDto">+title: string</text>
+<text x="0.0" y="43.5" stroke="none" data-name="CreateProjectDto">+image: string</text>
+
+</g>
+</g>
+<g transform="translate(5072.75, 118.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="CreateProjectDto">
+<g transform="translate(8, 8)" fill="#33322E" data-name="CreateProjectDto">
+
+</g>
+</g>
+</g>
+<g data-name="FindByUserIdDto">
+<g fill="#eee8d5" stroke="#33322E" data-name="FindByUserIdDto">
+<rect x="5263.8" y="41.5" height="70.0" width="149.0" data-name="FindByUserIdDto"></rect>
+<path d="M5263.8 72.5 L5412.8 72.5" fill="none" data-name="FindByUserIdDto"></path>
+<path d="M5263.8 103.5 L5412.8 103.5" fill="none" data-name="FindByUserIdDto"></path>
+</g>
+<g transform="translate(5263.75, 41.5)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="FindByUserIdDto">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="FindByUserIdDto">
+<a id="src/project/dto/find-by-user-id.dto.ts.FindByUserIdDto" xlink:href="src/project/dto/find-by-user-id.dto.ts"><text x="66.5" y="13.5" stroke="none" text-anchor="middle" data-name="FindByUserIdDto">FindByUserIdDto</text></a>
+
+</g>
+</g>
+<g transform="translate(5263.75, 72.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="FindByUserIdDto">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="FindByUserIdDto">
+<text x="0.0" y="13.5" stroke="none" data-name="FindByUserIdDto">+userId: number</text>
+
+</g>
+</g>
+<g transform="translate(5263.75, 103.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="FindByUserIdDto">
+<g transform="translate(8, 8)" fill="#33322E" data-name="FindByUserIdDto">
+
+</g>
+</g>
+</g>
+<g data-name="UpdateProjectDto">
+<g fill="#eee8d5" stroke="#33322E" data-name="UpdateProjectDto">
+<rect x="5452.8" y="26.5" height="100.0" width="155.0" data-name="UpdateProjectDto"></rect>
+<path d="M5452.8 57.5 L5607.8 57.5" fill="none" data-name="UpdateProjectDto"></path>
+<path d="M5452.8 118.5 L5607.8 118.5" fill="none" data-name="UpdateProjectDto"></path>
+</g>
+<g transform="translate(5452.75, 26.5)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="UpdateProjectDto">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="UpdateProjectDto">
+<a id="src/project/dto/update-project.dto.ts.UpdateProjectDto" xlink:href="src/project/dto/update-project.dto.ts"><text x="69.5" y="13.5" stroke="none" text-anchor="middle" data-name="UpdateProjectDto">UpdateProjectDto</text></a>
+
+</g>
+</g>
+<g transform="translate(5452.75, 57.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="UpdateProjectDto">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="UpdateProjectDto">
+<text x="0.0" y="13.5" stroke="none" data-name="UpdateProjectDto">+userId: number</text>
+<text x="0.0" y="28.5" stroke="none" data-name="UpdateProjectDto">+title?: string</text>
+<text x="0.0" y="43.5" stroke="none" data-name="UpdateProjectDto">+image?: string</text>
+
+</g>
+</g>
+<g transform="translate(5452.75, 118.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="UpdateProjectDto">
+<g transform="translate(8, 8)" fill="#33322E" data-name="UpdateProjectDto">
+
+</g>
+</g>
+</g>
+<g data-name="Project">
+<g fill="#eee8d5" stroke="#33322E" data-name="Project">
+<rect x="5647.8" y="19.0" height="115.0" width="133.0" data-name="Project"></rect>
+<path d="M5647.8 50.0 L5780.8 50.0" fill="none" data-name="Project"></path>
+<path d="M5647.8 126.0 L5780.8 126.0" fill="none" data-name="Project"></path>
+</g>
+<g transform="translate(5647.75, 19)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="Project">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Project">
+<a id="src/project/entities/project.entity.ts.Project" xlink:href="src/project/entities/project.entity.ts"><text x="58.5" y="13.5" stroke="none" text-anchor="middle" data-name="Project">Project</text></a>
+
+</g>
+</g>
+<g transform="translate(5647.75, 50)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Project">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="Project">
+<text x="0.0" y="13.5" stroke="none" data-name="Project">+id: number</text>
+<text x="0.0" y="28.5" stroke="none" data-name="Project">+title: string</text>
+<text x="0.0" y="43.5" stroke="none" data-name="Project">+user: User</text>
+<text x="0.0" y="58.5" stroke="none" data-name="Project">+image: Image</text>
+
+</g>
+</g>
+<g transform="translate(5647.75, 126)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Project">
+<g transform="translate(8, 8)" fill="#33322E" data-name="Project">
+
+</g>
+</g>
+</g>
+<g data-name="ICreateProject">
+<g fill="lightblue" stroke="#33322E" data-name="ICreateProject">
+<rect x="5820.8" y="26.5" height="100.0" width="146.0" data-name="ICreateProject"></rect>
+<path d="M5820.8 57.5 L5966.8 57.5" fill="none" data-name="ICreateProject"></path>
+<path d="M5820.8 118.5 L5966.8 118.5" fill="none" data-name="ICreateProject"></path>
+</g>
+<g transform="translate(5820.75, 26.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="ICreateProject">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="ICreateProject">
+<a id="src/project/interface/create-project.interface.ts.ICreateProject" xlink:href="src/project/interface/create-project.interface.ts"><text x="65.0" y="13.5" stroke="none" text-anchor="middle" data-name="ICreateProject">ICreateProject</text></a>
+
+</g>
+</g>
+<g transform="translate(5820.75, 57.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="ICreateProject">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="ICreateProject">
+<text x="0.0" y="13.5" stroke="none" data-name="ICreateProject">+title: string</text>
+<text x="0.0" y="28.5" stroke="none" data-name="ICreateProject">+userId: number</text>
+<text x="0.0" y="43.5" stroke="none" data-name="ICreateProject">+image: string</text>
+
+</g>
+</g>
+<g transform="translate(5820.75, 118.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="ICreateProject">
+<g transform="translate(8, 8)" fill="#33322E" data-name="ICreateProject">
+
+</g>
+</g>
+</g>
+<g data-name="IUpdateProject">
+<g fill="lightblue" stroke="#33322E" data-name="IUpdateProject">
+<rect x="6006.8" y="26.5" height="100.0" width="146.0" data-name="IUpdateProject"></rect>
+<path d="M6006.8 57.5 L6152.8 57.5" fill="none" data-name="IUpdateProject"></path>
+<path d="M6006.8 118.5 L6152.8 118.5" fill="none" data-name="IUpdateProject"></path>
+</g>
+<g transform="translate(6006.75, 26.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="IUpdateProject">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="IUpdateProject">
+<a id="src/project/interface/update-project.interface.ts.IUpdateProject" xlink:href="src/project/interface/update-project.interface.ts"><text x="65.0" y="13.5" stroke="none" text-anchor="middle" data-name="IUpdateProject">IUpdateProject</text></a>
+
+</g>
+</g>
+<g transform="translate(6006.75, 57.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="IUpdateProject">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="IUpdateProject">
+<text x="0.0" y="13.5" stroke="none" data-name="IUpdateProject">+userId: number</text>
+<text x="0.0" y="28.5" stroke="none" data-name="IUpdateProject">+title?: string</text>
+<text x="0.0" y="43.5" stroke="none" data-name="IUpdateProject">+image?: string</text>
+
+</g>
+</g>
+<g transform="translate(6006.75, 118.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="IUpdateProject">
+<g transform="translate(8, 8)" fill="#33322E" data-name="IUpdateProject">
+
+</g>
+</g>
+</g>
+<g data-name="User">
+<g fill="#eee8d5" stroke="#33322E" data-name="User">
+<rect x="6192.8" y="11.5" height="130.0" width="164.0" data-name="User"></rect>
+<path d="M6192.8 42.5 L6356.8 42.5" fill="none" data-name="User"></path>
+<path d="M6192.8 133.5 L6356.8 133.5" fill="none" data-name="User"></path>
+</g>
+<g transform="translate(6192.75, 11.5)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="User">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="User">
+<a id="src/user/entities/user.entity.ts.User" xlink:href="src/user/entities/user.entity.ts"><text x="74.0" y="13.5" stroke="none" text-anchor="middle" data-name="User">User</text></a>
+
+</g>
+</g>
+<g transform="translate(6192.75, 42.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="User">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="User">
+<text x="0.0" y="13.5" stroke="none" data-name="User">+id: number</text>
+<text x="0.0" y="28.5" stroke="none" data-name="User">+name: string</text>
+<text x="0.0" y="43.5" stroke="none" data-name="User">+email: string</text>
+<text x="0.0" y="58.5" stroke="none" data-name="User">+password: string</text>
+<text x="0.0" y="73.5" stroke="none" data-name="User">+projects: Project[]</text>
+
+</g>
+</g>
+<g transform="translate(6192.75, 133.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="User">
+<g transform="translate(8, 8)" fill="#33322E" data-name="User">
+
+</g>
+</g>
+</g>
+<g data-name="ICreateUser">
+<g fill="lightblue" stroke="#33322E" data-name="ICreateUser">
+<rect x="6396.8" y="26.5" height="100.0" width="156.0" data-name="ICreateUser"></rect>
+<path d="M6396.8 57.5 L6552.8 57.5" fill="none" data-name="ICreateUser"></path>
+<path d="M6396.8 118.5 L6552.8 118.5" fill="none" data-name="ICreateUser"></path>
+</g>
+<g transform="translate(6396.75, 26.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="ICreateUser">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="ICreateUser">
+<a id="src/user/interfaces/create-user.interface.ts.ICreateUser" xlink:href="src/user/interfaces/create-user.interface.ts"><text x="70.0" y="13.5" stroke="none" text-anchor="middle" data-name="ICreateUser">ICreateUser</text></a>
+
+</g>
+</g>
+<g transform="translate(6396.75, 57.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="ICreateUser">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="ICreateUser">
+<text x="0.0" y="13.5" stroke="none" data-name="ICreateUser">+name: string</text>
+<text x="0.0" y="28.5" stroke="none" data-name="ICreateUser">+email: string</text>
+<text x="0.0" y="43.5" stroke="none" data-name="ICreateUser">+password: string</text>
+
+</g>
+</g>
+<g transform="translate(6396.75, 118.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="ICreateUser">
+<g transform="translate(8, 8)" fill="#33322E" data-name="ICreateUser">
+
+</g>
+</g>
+</g>
+<g data-name="IFindUser">
+<g fill="lightblue" stroke="#33322E" data-name="IFindUser">
+<rect x="6592.8" y="34.0" height="85.0" width="132.0" data-name="IFindUser"></rect>
+<path d="M6592.8 65.0 L6724.8 65.0" fill="none" data-name="IFindUser"></path>
+<path d="M6592.8 111.0 L6724.8 111.0" fill="none" data-name="IFindUser"></path>
+</g>
+<g transform="translate(6592.75, 34)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="IFindUser">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="IFindUser">
+<a id="src/user/interfaces/find-user.interface.ts.IFindUser" xlink:href="src/user/interfaces/find-user.interface.ts"><text x="58.0" y="13.5" stroke="none" text-anchor="middle" data-name="IFindUser">IFindUser</text></a>
+
+</g>
+</g>
+<g transform="translate(6592.75, 65)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="IFindUser">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="IFindUser">
+<text x="0.0" y="13.5" stroke="none" data-name="IFindUser">+id?: number</text>
+<text x="0.0" y="28.5" stroke="none" data-name="IFindUser">+email?: string</text>
+
+</g>
+</g>
+<g transform="translate(6592.75, 111)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="IFindUser">
+<g transform="translate(8, 8)" fill="#33322E" data-name="IFindUser">
+
+</g>
+</g>
+</g>
+<g data-name="IUser">
+<g fill="lightblue" stroke="#33322E" data-name="IUser">
+<rect x="6764.8" y="19.0" height="115.0" width="156.0" data-name="IUser"></rect>
+<path d="M6764.8 50.0 L6920.8 50.0" fill="none" data-name="IUser"></path>
+<path d="M6764.8 126.0 L6920.8 126.0" fill="none" data-name="IUser"></path>
+</g>
+<g transform="translate(6764.75, 19)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="IUser">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="IUser">
+<a id="src/user/interfaces/user.interface.ts.IUser" xlink:href="src/user/interfaces/user.interface.ts"><text x="70.0" y="13.5" stroke="none" text-anchor="middle" data-name="IUser">IUser</text></a>
+
+</g>
+</g>
+<g transform="translate(6764.75, 50)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="IUser">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="IUser">
+<text x="0.0" y="13.5" stroke="none" data-name="IUser">+id: number</text>
+<text x="0.0" y="28.5" stroke="none" data-name="IUser">+name: string</text>
+<text x="0.0" y="43.5" stroke="none" data-name="IUser">+email: string</text>
+<text x="0.0" y="58.5" stroke="none" data-name="IUser">+password: string</text>
+
+</g>
+</g>
+<g transform="translate(6764.75, 126)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="IUser">
+<g transform="translate(8, 8)" fill="#33322E" data-name="IUser">
+
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</svg>

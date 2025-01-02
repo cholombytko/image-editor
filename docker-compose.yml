@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
+    environment:
+      - PORT=3000
+      - HOST=db
+      - DB_PORT=5432
+      - USERNAME=test_user
+      - PASSWORD=test_password123
+      - DB_NAME=imageeditor
+      - JWT_SECRET=test_jwt
+      - SALT=$$2b$$10$$1dpR6pNBwFGtTYUw6cPr9u
+    depends_on:
+      - db
+
+  db:
+    image: postgres:14
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_DB=imageeditor
+      - POSTGRES_USER=test_user
+      - POSTGRES_PASSWORD=test_password123
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
