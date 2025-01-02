@@ -12,5 +12,7 @@ docker-compose up
 ```bash
 cd frontend/
 
+npm i
+
 npm run dev
 ```
